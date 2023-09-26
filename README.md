@@ -122,7 +122,9 @@ private byte[] resizeImageToBytes(MultipartFile file, int width, double ratio, d
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		try {
 			System.out.println((int)(width*ratio));
-			Thumbnails.of(file.getInputStream()).forceSize(width, (int)(width*ratio)).outputQuality(quality)
+			Thumbnails.of(file.getInputStream())
+					.forceSize(width, (int)(width*ratio))
+					.outputQuality(quality)
 					.toOutputStream(outputStream);
 		} catch (Exception ex) {
 			log.error("Error resizing the image", ex);
@@ -142,7 +144,9 @@ The `uploadToS3` method takes the resized image data (`fileBytes`) and the desir
 ```java
 // upload to s3
 	private String uploadToS3(byte[] fileBytes, String fileName) {
-		PutObjectRequest objectRequest = PutObjectRequest.builder().bucket(bucketName).key(fileName).build();
+		PutObjectRequest objectRequest = PutObjectRequest.builder()
+								.bucket(bucketName)
+								.key(fileName).build();
 		s3Client.putObject(objectRequest, RequestBody.fromBytes(fileBytes));
 		return "File Uploaded Succesfully " + fileName;
 	}
