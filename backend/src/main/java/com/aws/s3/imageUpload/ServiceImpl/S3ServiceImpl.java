@@ -57,7 +57,6 @@ public class S3ServiceImpl implements S3Service {
 	private byte[] resizeImageToBytes(MultipartFile file, int width, double ratio, double quality) {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		try {
-			System.out.println((int)(width*ratio));
 			Thumbnails.of(file.getInputStream()).forceSize(width, (int)(width*ratio)).outputQuality(quality)
 					.toOutputStream(outputStream);
 		} catch (Exception ex) {

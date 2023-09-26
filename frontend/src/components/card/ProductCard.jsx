@@ -8,6 +8,11 @@ import {
 } from "@mui/material";
 import { AWS_S3_BASE_URL } from "../../config/config";
 
+// This function, responsiveImages, takes the `imageName` and `productId` obtained from the backend
+// and generates an HTML `img` element with responsive image sources based on screen size.
+// It constructs the image URLs using the provided AWS_S3_BASE_URL and the image's base name and extension.
+// The `srcSet` attribute specifies different image sources for various screen widths,
+// and the `sizes` attribute sets the maximum image width for each source.
 const responsiveImages = (imageName, productId) => {
   const imageBaseName = imageName.substring(0, imageName.lastIndexOf("."));
   const extension = imageName.substring(imageName.lastIndexOf(".") + 1);
